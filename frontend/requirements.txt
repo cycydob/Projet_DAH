@@ -1,1 +1,33 @@
 
+# Deep Learning
+tensorflow==2.15.0
+keras==2.15.0
+
+# API
+fastapi==0.104.1
+uvicorn==0.24.0
+python-multipart==0.0.6
+
+# Streamlit
+streamlit==1.31.0
+
+# Data Processing
+numpy==1.24.3
+pandas==2.1.4
+pillow==10.1.0
+opencv-python-headless==4.9.0.80
+
+# Visualization
+matplotlib==3.8.2
+seaborn==0.13.1
+plotly==5.18.0
+
+# ML Utilities
+scikit-learn==1.4.0
+
+# Others
+pydantic==2.5.0
+python-dotenv==1.0.0
+
+
+requests==2.31.0
