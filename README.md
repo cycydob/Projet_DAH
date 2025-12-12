@@ -9,3 +9,5 @@ Projet 9 : Classification d’images de plantes (santé des feuilles)
 
 
 # Pour le deployement, Render
+  ### pour le backend : https://plant-disease-backend-api.onrender.com/
+  ### pour le frondend : https://plant-disease-frontend-app.onrender.com/
