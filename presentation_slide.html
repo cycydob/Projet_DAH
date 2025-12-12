@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classification de Maladies des Plantes - Présentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: auto;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            background: white;
+            overflow-y: auto;
+            top: 0;
+            left: 0;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #2d3748;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: #2d3748;
+            margin-bottom: 30px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            color: #4a5568;
+            margin: 20px 0 15px 0;
+        }
+
+        p, li {
+            font-size: 1.3em;
+            color: #4a5568;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li::before {
+            content: "✓ ";
+            color: #48bb78;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            width: 100%;
+            margin: 30px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .metric-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 10px;
+            margin: 10px;
+            min-width: 150px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .tech-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .architecture-diagram {
+            width: 90%;
+            margin: 30px auto;
+            padding: 30px;
+            background: #f7fafc;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .flow-item {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            font-size: 1.2em;
+        }
+
+        .flow-arrow {
+            margin: 0 20px;
+            font-size: 2em;
+            color: #667eea;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #764ba2;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .slide-number {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            font-size: 1.2em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: #718096;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .demo-section {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #48bb78;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #667eea;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .conclusion-box {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            width: 80%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            font-size: 1.2em;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Page de Titre -->
+        <div class="slide active">
+            <h1>🌿 Classification de Maladies des Plantes</h1>
+            <p class="subtitle">Détection Automatique par Intelligence Artificielle</p>
+            <div style="margin-top: 50px;">
+                <p style="font-size: 1.4em; color: #4a5568;">Présenté par: <strong>[Votre Nom]</strong></p>
+                <p style="font-size: 1.2em; color: #718096; margin-top: 10px;">Projet 9 - Data Science & Machine Learning</p>
+                <p style="font-size: 1.1em; color: #a0aec0; margin-top: 30px;">Date: Décembre 2024</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Contexte et Problématique -->
+        <div class="slide">
+            <h2>📊 Contexte et Problématique</h2>
+            <div style="width: 90%; text-align: left;">
+                <h3>🌍 Contexte Mondial</h3>
+                <ul>
+                    <li>Les maladies des plantes causent jusqu'à <span class="highlight">40% de pertes</span> de récoltes</li>
+                    <li>Détection manuelle: lente, coûteuse, nécessite expertise</li>
+                    <li>Besoin urgent de solutions automatisées et accessibles</li>
+                </ul>
+
+                <h3>🎯 Objectifs du Projet</h3>
+                <ul>
+                    <li>Développer un système de <strong>détection automatique</strong> de maladies</li>
+                    <li>Atteindre une précision supérieure à <span class="highlight">90%</span></li>
+                    <li>Créer une API REST accessible et déployée</li>
+                    <li>Interface utilisateur intuitive pour les agriculteurs</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3: Dataset -->
+        <div class="slide">
+            <h2>📁 Dataset et Données</h2>
+            <div class="metrics">
+                <div class="metric-card">
+                    <div class="metric-number">87K+</div>
+                    <div class="metric-label">Images</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">38</div>
+                    <div class="metric-label">Classes de Maladies</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">14</div>
+                    <div class="metric-label">Types de Plantes</div>
+                </div>
+            </div>
+            <div style="width: 90%; text-align: left; margin-top: 30px;">
+                <h3>📦 Source</h3>
+                <p><strong>New Plant Diseases Dataset (Kaggle)</strong></p>
+                <ul>
+                    <li>Images de feuilles saines et malades</li>
+                    <li>Résolution: 256x256 pixels</li>
+                    <li>Plantes: Tomate, Pomme, Maïs, Raisin, etc.</li>
+                    <li>Maladies: Mildiou, Oïdium, Taches foliaires, etc.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 4: Méthodologie -->
+        <div class="slide">
+            <h2>🔬 Méthodologie</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>1️⃣</h3>
+                    <p><strong>Exploration</strong></p>
+                    <p style="font-size: 0.9em;">Analyse dataset</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2️⃣</h3>
+                    <p><strong>Prétraitement</strong></p>
+                    <p style="font-size: 0.9em;">Augmentation</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>3️⃣</h3>
+                    <p><strong>Modélisation</strong></p>
+                    <p style="font-size: 0.9em;">Transfer Learning</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>4️⃣</h3>
+                    <p><strong>Évaluation</strong></p>
+                    <p style="font-size: 0.9em;">Métriques</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>5️⃣</h3>
+                    <p><strong>Déploiement</strong></p>
+                    <p style="font-size: 0.9em;">API + Interface</p>
+                </div>
+            </div>
+            <div style="width: 90%; text-align: left; margin-top: 50px;">
+                <h3>🔧 Techniques Utilisées</h3>
+                <ul>
+                    <li><strong>Transfer Learning</strong> avec EfficientNetB0 (pré-entraîné sur ImageNet)</li>
+                    <li><strong>Data Augmentation</strong>: rotation, zoom, flip, brightness</li>
+                    <li><strong>Fine-tuning</strong> progressif en 2 phases</li>
+                    <li><strong>Callbacks</strong>: Early Stopping, ReduceLROnPlateau</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 5: Architecture du Modèle -->
+        <div class="slide">
+            <h2>🏗️ Architecture du Modèle</h2>
+            <div class="architecture-diagram">
+                <div class="flow-item">
+                    <div style="flex: 1; background: #e6fffa; padding: 15px; border-radius: 8px;">
+                        Input Image<br>(224×224×3)
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div style="flex: 2; background: #bee3f8; padding: 15px; border-radius: 8px;">
+                        <strong>EfficientNetB0</strong><br>(Frozen layers)<br>Feature Extraction
+                    </div>
+                </div>
+                <div class="flow-arrow" style="text-align: center; margin: 20px 0;">↓</div>
+                <div class="flow-item">
+                    <div style="flex: 1; background: #fef5e7; padding: 15px; border-radius: 8px;">
+                        GlobalAveragePooling2D
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div style="flex: 1; background: #fdecea; padding: 15px; border-radius: 8px;">
+                        BatchNormalization
+                    </div>
+                </div>
+                <div class="flow-arrow" style="text-align: center; margin: 20px 0;">↓</div>
+                <div class="flow-item">
+                    <div style="flex: 1; background: #e8f5e9; padding: 15px; border-radius: 8px;">
+                        Dense(512) + ReLU<br>Dropout(0.5)
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div style="flex: 1; background: #e8f5e9; padding: 15px; border-radius: 8px;">
+                        Dense(256) + ReLU<br>Dropout(0.3)
+                    </div>
+                </div>
+                <div class="flow-arrow" style="text-align: center; margin: 20px 0;">↓</div>
+                <div class="flow-item" style="justify-content: center;">
+                    <div style="background: #d1c4e9; padding: 15px; border-radius: 8px;">
+                        <strong>Output</strong><br>Dense(38) + Softmax<br>Prédiction de classe
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Résultats -->
+        <div class="slide">
+            <h2>📈 Résultats et Performances</h2>
+            <div class="metrics">
+                <div class="metric-card">
+                    <div class="metric-number">92.5%</div>
+                    <div class="metric-label">Accuracy Globale</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">96.8%</div>
+                    <div class="metric-label">Top-3 Accuracy</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">91.2%</div>
+                    <div class="metric-label">F1-Score Moyen</div>
+                </div>
+            </div>
+            <div style="width: 90%; text-align: left; margin-top: 30px;">
+                <h3>✅ Points Forts</h3>
+                <ul>
+                    <li>Excellente performance sur les classes équilibrées</li>
+                    <li>Temps d'inférence rapide: <span class="highlight">&lt; 2 secondes</span></li>
+                    <li>Généralisation satisfaisante sur données test</li>
+                    <li>Robustesse aux variations d'éclairage et d'angle</li>
+                </ul>
+
+                <h3>⚠️ Limitations</h3>
+                <ul>
+                    <li>Performance variable sur classes minoritaires</li>
+                    <li>Nécessite images de bonne qualité</li>
+                    <li>Limité aux 38 maladies du dataset</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 7: Stack Technique -->
+        <div class="slide">
+            <h2>💻 Stack Technique</h2>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <div class="tech-icon">🐍</div>
+                    <strong>Python 3.10</strong>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🧠</div>
+                    <strong>TensorFlow<br>Keras</strong>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚡</div>
+                    <strong>FastAPI</strong>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">📊</div>
+                    <strong>Streamlit</strong>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🐳</div>
+                    <strong>Docker</strong>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">☁️</div>
+                    <strong>Render</strong>
+                </div>
+            </div>
+            <div style="width: 90%; text-align: left; margin-top: 40px;">
+                <h3>🔧 Bibliothèques Principales</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                    <div>
+                        <strong>Deep Learning:</strong>
+                        <ul style="margin-top: 10px;">
+                            <li>TensorFlow 2.15</li>
+                            <li>EfficientNetB0</li>
+                            <li>Keras</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Data Processing:</strong>
+                        <ul style="margin-top: 10px;">
+                            <li>NumPy</li>
+                            <li>Pandas</li>
+                            <li>OpenCV</li>
+                            <li>Pillow</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: API et Déploiement -->
+        <div class="slide">
+            <h2>🚀 API REST et Déploiement</h2>
+            <div style="width: 90%; text-align: left;">
+                <h3>📡 Endpoints API</h3>
+                <div class="code-block">
+GET  /health          # Health check<br>
+GET  /classes         # Liste des classes<br>
+POST /predict         # Prédiction simple<br>
+POST /predict-batch   # Prédictions multiples<br>
+GET  /recommendations # Recommandations
+                </div>
+
+                <h3>🌐 Déploiement</h3>
+                <ul>
+                    <li><strong>Platform:</strong> Render (Cloud)</li>
+                    <li><strong>URL:</strong> https://plant-disease-api.onrender.com</li>
+                    <li><strong>Documentation:</strong> Swagger UI intégrée</li>
+                    <li><strong>CI/CD:</strong> Déploiement automatique via GitHub</li>
+                </ul>
+
+                <h3>✨ Fonctionnalités</h3>
+                <ul>
+                    <li>Traitement d'images JPG/PNG</li>
+                    <li>Réponse JSON avec top-5 prédictions</li>
+                    <li>Recommandations de traitement automatiques</li>
+                    <li>Gestion d'erreurs robuste</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 9: Interface Streamlit -->
+        <div class="slide">
+            <h2>🎨 Interface Utilisateur (Streamlit)</h2>
+            <div class="demo-section">
+                <h3>🖼️ Fonctionnalités de l'Interface</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px;">
+                    <div>
+                        <h4 style="color: #667eea; margin-bottom: 15px;">📤 Upload d'Image</h4>
+                        <ul style="font-size: 1.1em;">
+                            <li>Drag & drop ou sélection fichier</li>
+                            <li>Prévisualisation immédiate</li>
+                            <li>Formats: JPG, PNG</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #667eea; margin-bottom: 15px;">🔍 Diagnostic</h4>
+                        <ul style="font-size: 1.1em;">
+                            <li>Analyse instantanée</li>
+                            <li>Top-5 prédictions avec confiance</li>
+                            <li>Graphiques interactifs (Plotly)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #667eea; margin-bottom: 15px;">💡 Recommandations</h4>
+                        <ul style="font-size: 1.1em;">
+                            <li>Actions à prendre</li>
+                            <li>Traitement suggéré</li>
+                            <li>Niveau de sévérité</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #667eea; margin-bottom: 15px;">⚙️ Paramètres</h4>
+                        <ul style="font-size: 1.1em;">
+                            <li>Seuil de confiance ajustable</li>
+                            <li>Nombre de prédictions</li>
+                            <li>Mode sombre/clair</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Démonstration -->
+        <div class="slide">
+            <h2>🎬 Démonstration Live</h2>
+            <div style="width: 90%; text-align: center;">
+                <div style="background: #f7fafc; padding: 40px; border-radius: 15px; margin: 30px 0;">
+                    <h3 style="color: #667eea; margin-bottom: 30px;">🌐 Liens de Démonstration</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+                        <div style="background: white; padding: 20px 40px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <strong style="font-size: 1.2em;">📡 API Documentation</strong>
+                            <p style="margin-top: 10px; color: #667eea;">https://your-api.onrender.com/docs</p>
+                        </div>
+                        <div style="background: white; padding: 20px 40px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <strong style="font-size: 1.2em;">🎨 Interface Streamlit</strong>
+                            <p style="margin-top: 10px; color: #667eea;">https://your-app.streamlit.app</p>
+                        </div>
+                        <div style="background: white; padding: 20px 40px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <strong style="font-size: 1.2em;">📂 Code Source (GitHub)</strong>
+                            <p style="margin-top: 10px; color: #667eea;">https://github.com/username/plant-disease</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: #fff3cd; padding: 20px; border-radius: 10px; border-left: 5px solid #ffc107; margin-top: 30px;">
+                    <p style="font-size: 1.3em; color: #856404;">
+                        <strong>💡 Moment de Démonstration Interactive</strong><br>
+                        <span style="font-size: 0.9em;">(Tester l'API en temps réel avec une image)</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Améliorations Futures -->
+        <div class="slide">
+            <h2>🔮 Perspectives et Améliorations</h2>
+            <div style="width: 90%; text-align: left;">
+                <h3>🚀 Court Terme (3-6 mois)</h3>
+                <ul>
+                    <li>Étendre à <strong>100+ maladies</strong> supplémentaires</li>
+                    <li>Application mobile (iOS/Android)</li>
+                    <li>Support multi-langues (FR, EN, ES, AR)</li>
+                    <li>Intégration GPS pour recommandations locales</li>
+                </ul>
+
+                <h3>🎯 Moyen Terme (6-12 mois)</h3>
+                <ul>
+                    <li>Détection en <strong>temps réel</strong> via vidéo</li>
+                    <li>Système de recommandation personnalisé</li>
+                    <li>Base de données de traitements biologiques</li>
+                    <li>Collaboration avec agronomies</li>
+                </ul>
+
+                <h3>💡 Long Terme (1-2 ans)</h3>
+                <ul>
+                    <li>Intégration IoT (capteurs, drones)</li>
+                    <li>Prédiction précoce des maladies</li>
+                    <li>Analyse de santé globale de la culture</li>
+                    <li>Marketplace de solutions agricoles</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 12: Impact et Valeur -->
+        <div class="slide">
+            <h2>💰 Impact et Valeur Ajoutée</h2>
+            <div style="width: 90%;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px;">
+                    <div style="background: #e6fffa; padding: 30px; border-radius: 15px;">
+                        <h3 style="color: #047857; margin-bottom: 20px;">🌱 Pour les Agriculteurs</h3>
+                        <ul style="font-size: 1.1em;">
+                            <li>Diagnostic <strong>instantané</strong> et gratuit</li>
+                            <li>Réduction des pertes de récoltes</li>
+                            <li>Économie sur consultations experts</li>
+                            <li>Traitement précoce = meilleurs résultats</li>
+                        </ul>
+                    </div>
+                    <div style="background: #fef3c7; padding: 30px; border-radius: 15px;">
+                        <h3 style="color: #92400e; margin-bottom: 20px;">🌍 Impact Sociétal</h3>
+                        <ul style="font-size: 1.1em;">
+                            <li>Sécurité alimentaire renforcée</li>
+                            <li>Réduction utilisation pesticides</li>
+                            <li>Agriculture durable et écologique</li>
+                            <li>Accessibilité zones rurales</li>
+                        </ul>
+                    </div>
+                </div>
