@@ -13,14 +13,14 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# URL de l'API (à modifier selon votre déploiement)
+# URL de l'API 
 import os
 
-# Essayer de récupérer l'URL depuis les secrets, sinon utiliser localhost
+
 try:
     API_URL = st.secrets.get("API_URL", "http://localhost:8000")
 except:
-    # En développement local, utiliser localhost
+    # En développement local
     API_URL = os.environ.get("API_URL", "http://localhost:8000")
 
 # CSS personnalisé
