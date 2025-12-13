@@ -17,7 +17,7 @@ try:
     num_classes = len(class_names)
     print(f"✓ Nombre de classes: {num_classes}")
 except:
-    print("⚠️ class_names.json non trouvé, utilisation de 38 classes par défaut")
+    print("class_names.json non trouvé, utilisation de 38 classes par défaut")
     num_classes = 38
 
 # Recréer l'architecture du modèle (identique au training)
@@ -69,15 +69,15 @@ try:
     with h5py.File('plant_disease_model.h5', 'r') as f:
         # Vérification de la structure
         if 'model_weights' in f.keys():
-            print("✓ Poids trouvés dans le fichier")
+            print(" Poids trouvés dans le fichier")
             # Charger les poids
             model.load_weights('plant_disease_model.h5')
-            print("✓ Poids chargés avec succès!")
+            print(" Poids chargés avec succès!")
         else:
-            print("⚠️ Structure de poids non reconnue")
+            print(" Structure de poids non reconnue")
             print("Le modèle sera sauvegardé avec des poids aléatoires (nécessite réentraînement)")
 except Exception as e:
-    print(f"⚠️ Impossible de charger les poids: {e}")
+    print(f" Impossible de charger les poids: {e}")
     print("Le modèle sera sauvegardé avec l'architecture correcte mais nécessite réentraînement")
 
 # Sauvegarder le nouveau modèle dans backend/
@@ -92,20 +92,20 @@ model.save('../backend/plant_disease_model.h5',
            save_format='h5',
            include_optimizer=False,
            save_traces=False)
-print("✓ Modèle sauvegardé: ../backend/plant_disease_model.h5")
+print(" Modèle sauvegardé: ../backend/plant_disease_model.h5")
 
 # Copie dans models/
 model.save('../backend/models/best_model.h5',
            save_format='h5',
            include_optimizer=False,
            save_traces=False)
-print("✓ Copie sauvegardée: ../backend/models/best_model.h5")
+print(" Copie sauvegardée: ../backend/models/best_model.h5")
 
 # Copier class_names.json
 try:
     import shutil
     shutil.copy('class_names.json', '../backend/class_names.json')
-    print("✓ class_names.json copié")
+    print(" class_names.json copié")
 except:
-    print("⚠️ class_names.json non copié")
+    print(" class_names.json non copié")
 print("\nCorrection terminée.")
